@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
 public class UserController {
 
     @Autowired
@@ -34,6 +35,8 @@ public class UserController {
 
     @DeleteMapping("/user")
     public User deleteUser(@PathVariable("id") Long id){
-        return userService.deleteUser(id);
+        User user = userService.getUserById(id);
+        userService.deleteUser(id);
+        return user;
     }
 }
